@@ -54,7 +54,7 @@ function mostPopularVideosForDays(days){
             '>',
             knexInstance.raw(`now() - '?? days'::INTERVAL`, days)
         )
-        .from('whopupe_video_views')
+        .from('whopipe_video_views')
         .groupBy('video_name', 'region')
         .orderBy([
             { column: 'region', order: 'ASC' },
