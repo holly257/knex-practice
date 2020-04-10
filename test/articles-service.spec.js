@@ -32,7 +32,7 @@ describe('Articles service object', function() {
     })
 
     // before(() => db('blogful_articles').truncate())
-
+    
     beforeEach(() => db('blogful_articles').truncate())
     
     after(() => db.destroy())

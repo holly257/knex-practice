@@ -19,6 +19,10 @@ const shoppingListService = {
     },
 
     //update
+    updateItem(db, updatedInfo, id) {
+        return db('shopping_list')
+            .where({ id }).update(updatedInfo)
+    }
 
     //delete
 }
