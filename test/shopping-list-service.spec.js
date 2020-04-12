@@ -67,24 +67,33 @@ describe('Shopping List service object', () => {
             })
         })
 
-        //still getting error of empty update() call
         it('updateItem() takes item chosen and updates correctly', () => {
             const updatedItemId = 1
             const updatedContent = {
                 id: 1,
                 name: 'new item',
                 price: '3.10',
-                date_added: new Date(),
+                date_added: new Date(2020, 4, 4, 23, 32, 6),
                 checked: true,
                 category: 'Main'
             }
             return shoppingListService.updateItem(db, updatedItemId, updatedContent)
-                .then(() => shoppingListService.getShoppingItem(db, updatedContent))
+                .then(() => shoppingListService.getShoppingItem(db, updatedItemId))
                 .then(actual => {
                     expect(actual).to.eql({
                         id: updatedItemId,
                         ...updatedContent,
                     })
+                })
+        })
+
+        it('deleteItem() takes item id and deletes', () => {
+            const articleId = 2
+            return shoppingListService.deleteItem(db, articleId)
+                .then(() => shoppingListService.getShoppingList(db))
+                .then(allItems => {
+                    const newList = testData.filter(article => article.id !== articleId)
+                    expect(allItems).to.eql(newList)
                 })
         })
         

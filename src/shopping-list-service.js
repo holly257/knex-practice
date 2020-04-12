@@ -19,12 +19,15 @@ const shoppingListService = {
     },
 
     //update
-    updateItem(db, updatedInfo, id) {
+    updateItem(db, id, updatedInfo) {
         return db('shopping_list')
             .where({ id }).update(updatedInfo)
-    }
+    },
 
     //delete
+    deleteItem(db, id) {
+        return db('shopping_list').where({ id }).delete()
+    },
 }
 
 module.exports = shoppingListService
